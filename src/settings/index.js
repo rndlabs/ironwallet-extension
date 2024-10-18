@@ -8,12 +8,10 @@ import styled from 'styled-components'
 import { Cluster, ClusterValue, ClusterRow, ClusterBoxMain } from './Cluster'
 
 const APPEAR_AS_MM = '__frameAppearAsMM__'
-const AUGMENT_OFF = '__frameAugmentOff__'
 
 const initialState = {
   frameConnected: false,
   appearAsMM: false,
-  augmentOff: false
 }
 
 const actions = {
@@ -119,28 +117,6 @@ const SettingsScroll = styled.div`
   background: var(--ghostY);
   margin: 10px;
   border-radius: 30px;
-`
-
-const AugmentStateOn = styled.div`
-  color: var(--good);
-`
-
-const AugmentStateOff = styled.div`
-  color: var(--bad);
-`
-
-const Augment = styled.div`
-  position: relative;
-  height: 50px;
-  border-radius: 4px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-size: 12px;
-  overflow: hidden;
 `
 
 const FrameConnected = styled.div`
@@ -565,8 +541,7 @@ class _Settings extends React.Component {
     const isConnected = this.store('frameConnected')
     const {
       tab: { url },
-      isSupportedTab,
-      augmentOff
+      isSupportedTab
     } = this.props
     const { protocol, origin } = parseOrigin(url)
 
@@ -602,36 +577,6 @@ class _Settings extends React.Component {
               </>
             ) : null}
             {this.appearAsMMToggle()}
-            {origin === 'twitter.com' ? (
-              <>
-                <div style={{ height: '9px' }} />
-                <ClusterRow>
-                  {augmentOff ? (
-                    <>
-                      <ClusterValue>
-                        <Augment>Verify ENS Names</Augment>
-                      </ClusterValue>
-                      <ClusterValue onClick={() => toggleLocalSetting(AUGMENT_OFF)} style={{ flexGrow: '0' }}>
-                        <FrameButton>
-                          <AugmentStateOff>OFF</AugmentStateOff>
-                        </FrameButton>
-                      </ClusterValue>
-                    </>
-                  ) : (
-                    <>
-                      <ClusterValue>
-                        <Augment>Verify ENS Names</Augment>
-                      </ClusterValue>
-                      <ClusterValue onClick={() => toggleLocalSetting(AUGMENT_OFF)} style={{ flexGrow: '0' }}>
-                        <FrameButton>
-                          <AugmentStateOn>ON</AugmentStateOn>
-                        </FrameButton>
-                      </ClusterValue>
-                    </>
-                  )}
-                </ClusterRow>
-              </>
-            ) : null}
           </Cluster>
         </ClusterBoxMain>
       </>
@@ -669,7 +614,7 @@ const updateCurrentChain = (tab) => {
 }
 
 async function getInitialSettings(tabId) {
-  return Promise.all([getLocalSetting(tabId, APPEAR_AS_MM), getLocalSetting(tabId, AUGMENT_OFF)])
+  return Promise.all([getLocalSetting(tabId, APPEAR_AS_MM)])
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -678,7 +623,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const activeTab = await getActiveTab()
   const isInjectedTab = isInjectedUrl(activeTab?.url)
 
-  const [mmAppear, augmentOff] = isInjectedTab ? await getInitialSettings(activeTab.id) : [false, false]
+  const [mmAppear] = isInjectedTab ? await getInitialSettings(activeTab.id) : [false]
 
   if (isInjectedTab) {
     setInterval(() => {
@@ -686,12 +631,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     }, 1000)
   }
 
-  console.debug('Initial settings', { activeTab, isInjectedTab, mmAppear, augmentOff })
+  console.debug('Initial settings', { activeTab, isInjectedTab, mmAppear })
 
   const root = document.getElementById('root')
 
   ReactDOM.render(
-    <Settings tab={activeTab} isSupportedTab={isInjectedTab} mmAppear={mmAppear} augmentOff={augmentOff} />,
+    <Settings tab={activeTab} isSupportedTab={isInjectedTab} mmAppear={mmAppear} />,
     root
   )
 })
