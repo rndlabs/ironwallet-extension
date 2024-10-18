@@ -1,11 +1,11 @@
 {
-  "name": "frame-extension",
-  "version": "0.12.1",
+  "name": "ironwallet-extension",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/floating/frame-extension.git"
+    "url": "git://github.com/rndlabs/ironwallet-extension.git"
   },
-  "description": "Frame Companion Extension",
+  "description": "IronWallet Extension",
   "main": "src",
   "scripts": {
     "test": "pnpm run standard",
@@ -14,8 +14,8 @@
     "watch": "pnpm run build && webpack --config webpack.dev.config.js",
     "serve": "webpack serve --config webpack.dev.layer.config.js"
   },
-  "author": "Frame Labs, Inc.",
-  "license": "",
+  "author": "Nullis Contributors",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "@babel/core": "7.18.2",
     "@babel/plugin-transform-runtime": "7.18.2",
