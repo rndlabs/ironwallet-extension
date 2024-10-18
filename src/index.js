@@ -1,5 +1,5 @@
 /* globals chrome */
-const ethProvider = require('eth-provider')
+import ethProvider from 'eth-provider'
 
 const subTypes = [
   'chainChanged',
