@@ -1,16 +1,17 @@
 {
-  "name": "Frame Companion",
-  "version": "0.12.1",
+  "name": "IronWallet Companion",
+  "version": "0.0.1",
   "manifest_version": 3,
   "minimum_chrome_version": "116",
-  "description": "Frame companion creates an injected connection to Frame desktop wallet (required) on macOS, Windows or Linux.",
-  "homepage_url": "https://github.com/floating/frame",
+  "description": "An opinionated, minimally injected connection to IronWallet TUI app (required) on macOS, Windows or Linux.",
+  "homepage_url": "https://github.com/rndlabs/ironwallet",
   "background": {
     "service_worker": "index.js",
-    "scripts": ["index.js"]
+    "scripts": ["index.js"],
+    "type": "module"
   },
   "action": {
-    "default_title": "Frame Companion",
+    "default_title": "IronWallet Companion",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -36,7 +37,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "{77691beb-4c53-48de-ab20-6589a537717a}"
+      "id": "{00000000-0000-0000-0000-000000000000}"
     }
   },
   "permissions": ["activeTab", "alarms", "idle", "scripting"],
