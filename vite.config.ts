@@ -7,42 +7,42 @@ const useSvelte = process.env.VITE_USE_SVELTE === 'true';
 
 // Minimal configuration with only the Svelte plugin
 const svelteConfig = defineConfig({
-  plugins: [svelte()],
+	plugins: [svelte()]
 });
 
 // Full configuration without the Svelte plugin
 const fullConfig = defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        frame: path.resolve(__dirname, 'src/frame.ts'),
-        index: path.resolve(__dirname, 'src/index.ts')
-      },
-      output: {
-        entryFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
-        dir: path.resolve(__dirname, 'dist'),
-        format: 'es',
-      }
-    },
-    target: 'esnext',
-    minify: true,
-    emptyOutDir: false,
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-    extensions: ['.ts'],
-  },
-  publicDir: 'public',
-  server: {
-    open: true,
-    port: 3000,
-  },
-  define: {
-    'process.env': {},
-  },
+	build: {
+		rollupOptions: {
+			input: {
+				frame: path.resolve(__dirname, 'src/frame.ts'),
+				index: path.resolve(__dirname, 'src/index.ts')
+			},
+			output: {
+				entryFileNames: '[name].js',
+				assetFileNames: '[name].[ext]',
+				dir: path.resolve(__dirname, 'dist'),
+				format: 'es'
+			}
+		},
+		target: 'esnext',
+		minify: true,
+		emptyOutDir: false
+	},
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src')
+		},
+		extensions: ['.ts']
+	},
+	publicDir: 'public',
+	server: {
+		open: true,
+		port: 3000
+	},
+	define: {
+		'process.env': {}
+	}
 });
 
 // Dynamically return the appropriate configuration based on the environment
