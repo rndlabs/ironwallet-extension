@@ -12,7 +12,7 @@
 <Cluster>
     <ClusterRow>
         <ClusterValue>
-            <div style={`paddingBottom: 32px`}>
+            <div style="paddingBottom: 32px">
                 <UnsupportedTab>Unsupported tab</UnsupportedTab>
                 <CannotConnectSub>
                     <div>Frame does not have access to</div>
