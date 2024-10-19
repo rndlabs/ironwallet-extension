@@ -1,5 +1,7 @@
 import EventEmitter from 'events'
 import EthereumProvider from 'ethereum-provider'
+import { APPEAR_AS_MM, FRAME_SHIM, METAMASK_SHIM } from './constants'
+import { getLocalSetting } from './helper'
 
 function setProvider() {
   const existingProvider = Object.getOwnPropertyDescriptor(window, 'ethereum')
@@ -20,7 +22,7 @@ function shimWeb3(provider, appearAsMetaMask) {
   let loggedCurrentProvider = false
 
   if (!window.web3) {
-    const SHIM_IDENTIFIER = appearAsMetaMask ? '__isMetaMaskShim__' : '__isFrameShim__'
+    const SHIM_IDENTIFIER = appearAsMetaMask ? METAMASK_SHIM : FRAME_SHIM
 
     const shim = { currentProvider: provider }
     Object.defineProperty(shim, SHIM_IDENTIFIER, {
@@ -112,13 +114,7 @@ class Connection extends EventEmitter {
   }
 }
 
-let mmAppear = window.localStorage.getItem('__frameAppearAsMM__')
-
-try {
-  mmAppear = JSON.parse(mmAppear)
-} catch (e) {
-  mmAppear = false
-}
+let mmAppear = getLocalSetting<boolean>(APPEAR_AS_MM)
 
 let provider
 

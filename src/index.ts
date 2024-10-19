@@ -204,8 +204,6 @@ function addStateListeners() {
     const { tab, ...payload } = extensionPayload
     const { method, params } = payload
 
-    console.debug('Message received from tab', { tab, payload })
-
     if (payload.method === 'embedded_action_res') {
       const [action, res] = params
       if (action.type === 'getChainId' && res.chainId) return setCurrentChain(res.chainId)
@@ -326,7 +324,7 @@ async function setupClientStatusAlarm() {
 }
 
 setIcon('icons/icon96moon.png')
-setPopup('settings.html')
+setPopup('index.html')
 
 addStateListeners()
 addTabListeners()
