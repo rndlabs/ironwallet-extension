@@ -23,6 +23,7 @@ try {
     const script = document.createElement('script');
     script.setAttribute('type', 'text/javascript');
     script.src = chrome.runtime.getURL('frame.js');
+    script.type = 'module';
     script.onload = function () { script.parentNode.removeChild(script); };
     const topLevel = document.head || document.documentElement;
     topLevel.appendChild(script);

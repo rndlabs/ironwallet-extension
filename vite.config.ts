@@ -16,15 +16,14 @@ const fullConfig = defineConfig({
     rollupOptions: {
       input: {
         frame: path.resolve(__dirname, 'src/frame.ts'),
-        index: path.resolve(__dirname, 'src/index.ts'),
+        index: path.resolve(__dirname, 'src/index.ts')
       },
       output: {
-        // Output files with the same names to avoid duplicates
         entryFileNames: '[name].js',
         assetFileNames: '[name].[ext]',
-        dir: path.resolve(__dirname, 'dist'),  // Output to the same directory
+        dir: path.resolve(__dirname, 'dist'),
         format: 'es',
-      },
+      }
     },
     target: 'esnext',
     minify: true,
