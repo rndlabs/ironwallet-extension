@@ -326,7 +326,7 @@ async function setupClientStatusAlarm() {
 }
 
 setIcon('icons/icon96moon.png')
-setPopup('settings.html')
+setPopup('index.html')
 
 addStateListeners()
 addTabListeners()
