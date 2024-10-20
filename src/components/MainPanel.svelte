@@ -27,7 +27,7 @@
 	}
 
 	// Parse the tab's origin
-	const { protocol, origin } = parseOrigin(tab?.url!);
+	const { protocol, origin } = parseOrigin(tab?.url);
 </script>
 
 {#if !isSupportedTab}

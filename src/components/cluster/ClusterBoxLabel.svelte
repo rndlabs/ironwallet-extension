@@ -15,10 +15,10 @@
 		color: var(--moon);
 	}
 
-	.cluster-box-label svg {
+	/* .cluster-box-label svg {
 		position: relative;
 		top: -1px;
 		height: 16px;
 		margin-right: 12px;
-	}
+	} */
 </style>

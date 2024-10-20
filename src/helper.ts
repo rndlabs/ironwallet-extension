@@ -18,10 +18,10 @@ export async function getActiveTab(): Promise<chrome.tabs.Tab | undefined> {
 }
 
 // Function to execute a script in a tab
-async function executeScript<T>(
+async function executeScript<T, A extends unknown[]>(
 	tabId: number,
-	func: (...args: any[]) => T,
-	args: any[]
+	func: (...args: A) => T,
+	args: A
 ): Promise<ScriptResult[]> {
 	try {
 		const result = await chrome.scripting.executeScript({
@@ -32,6 +32,7 @@ async function executeScript<T>(
 
 		return result as ScriptResult[];
 	} catch (e) {
+		console.debug('Error executing the script', e);
 		// This can happen when trying to open the settings panel on a tab that doesn't support
 		// script injection, such as a chrome:// tab
 		return [];
@@ -46,6 +47,7 @@ export async function getLocalSettingOnTab<T>(tabId: number, key: string): Promi
 		try {
 			return JSON.parse(results[0].result) as T;
 		} catch (e) {
+			console.debug('Error parsing the local setting from tab', e);
 			return false;
 		}
 	}
@@ -60,6 +62,7 @@ export function getLocalSetting<T>(key: string): T | false {
 		try {
 			return JSON.parse(results) as T;
 		} catch (e) {
+			console.debug('Error parsing the local setting', e);
 			return false;
 		}
 	}
@@ -112,7 +115,7 @@ export const updateCurrentChain = (tabId?: number) => {
 	}
 };
 
-const originDomainRegex = /^(?<protocol>.+:(?:\/\/)?)(?<origin>[^\#\/]*)/;
+const originDomainRegex = /^(?<protocol>.+:(?:\/\/)?)(?<origin>[^#/]*)/;
 
 interface ParsedOrigin {
 	protocol: string;

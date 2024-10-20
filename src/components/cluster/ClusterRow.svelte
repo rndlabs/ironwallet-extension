@@ -22,11 +22,11 @@
 		margin-left: 3px;
 	}
 
-	.cluster-row:first-child > .cluster-value {
+	/* .cluster-row:first-child > .cluster-value {
 		border-top-left-radius: 18px;
 	}
 
 	.cluster-row:last-child > .cluster-value {
 		border-bottom-left-radius: 18px;
-	}
+	} */
 </style>

@@ -17,7 +17,7 @@
 		"isolatedModules": true,
 		"moduleDetection": "force",
 		"strict": true,
-		"types": ["@types/chrome", "@types/react"]
+		"types": ["@types/chrome"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
 	"exclude": ["node_modules"],

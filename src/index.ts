@@ -36,6 +36,7 @@ const subType = (pendingPayload) => {
 		const type = pendingPayload.params[0];
 		return subTypes.includes(type) ? type : 'unknown';
 	} catch (e) {
+		console.debug('Error getting subscription type', e);
 		return 'unknown';
 	}
 };

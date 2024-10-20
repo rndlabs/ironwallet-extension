@@ -11,7 +11,7 @@
 		align-items: stretch;
 	}
 
-	.cluster-column > .cluster-value {
+	/* .cluster-column > .cluster-value {
 		border-radius: 8px;
 	}
 
@@ -21,5 +21,5 @@
 
 	.cluster-column:last-child > .cluster-value:first-child {
 		border-top-right-radius: 18px;
-	}
+	} */
 </style>

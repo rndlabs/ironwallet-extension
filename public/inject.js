@@ -1,5 +1,5 @@
 try {
-	chrome.runtime.onMessage.addListener((payload, sender, sendResponse) => {
+	chrome.runtime.onMessage.addListener((payload, _sender, _sendResponse) => {
 		if (payload.type === 'eth:payload') {
 			delete payload.type;
 			window.postMessage({ type: 'eth:payload', payload }, window.location.origin);

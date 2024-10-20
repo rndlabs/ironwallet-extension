@@ -120,7 +120,7 @@ class Connection extends EventEmitter {
 	}
 }
 
-let mmAppear = getLocalSetting<boolean>(APPEAR_AS_MM);
+const mmAppear = getLocalSetting<boolean>(APPEAR_AS_MM);
 
 let provider;
 
@@ -181,7 +181,7 @@ const embedded = {
 	})
 };
 
-document.addEventListener('readystatechange', (e) => {
+document.addEventListener('readystatechange', (_e) => {
 	if (document.readyState === 'interactive') {
 		setProvider();
 	}
