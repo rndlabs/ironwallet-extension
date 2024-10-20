@@ -5,21 +5,23 @@
 	export let style: string | Record<string, string> = '';
 </script>
 
-<button
+<div
 	class="cluster-value"
 	class:pointer-events={pointerEvents}
 	class:transparent
 	class:clickable={onClick || pointerEvents}
 	on:click={() => onClick && onClick()}
+	on:keydown={(event) => (event.key === 'Enter' || event.key === ' ') && onClick && onClick()}
+	role="button"
+	tabindex="0"
 	style={typeof style === 'string'
 		? style
 		: Object.entries(style)
 				.map(([key, value]) => `${key}: ${value};`)
 				.join(' ')}
-	aria-label="Action button"
 >
 	<slot></slot>
-</button>
+</div>
 
 <style>
 	.cluster-value {
