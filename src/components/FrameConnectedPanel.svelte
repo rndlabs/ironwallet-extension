@@ -12,14 +12,16 @@
 	let isConnected: boolean;
 
 	$: isConnected = $appStore.frameConnected;
+
+	function handleSummonFrame() {
+		if (isConnected) chrome.runtime.sendMessage({ method: 'frame_summon', params: [] });
+	}
 </script>
 
 <Cluster>
 	<ClusterRow>
 		<ClusterValue
-			onClick={() => {
-				if (isConnected) chrome.runtime.sendMessage({ method: 'frame_summon', params: [] });
-			}}
+			onClick={handleSummonFrame}
 			style={{
 				flexGrow: '1',
 				color: isConnected ? 'var(--good)' : 'var(--moon)',
