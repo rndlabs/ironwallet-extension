@@ -10,7 +10,6 @@
 	let activeTab: chrome.tabs.Tab | undefined = undefined;
 	let mmAppear: boolean = false;
 	let isInjectedTab: boolean = false;
-	let intervalId: number | undefined;
 
 	// Connect to frame
 	const frameConnect = chrome.runtime.connect({ name: EXTENSION_PORT_NAME });
@@ -31,8 +30,9 @@
 		actions.setFrameConnected(isInjectedTab);
 
 		if (isInjectedTab && activeTab?.id !== undefined) {
-			// Set the interval and store the intervalId
-			intervalId = window.setInterval(() => {
+			// Intentionally do not record the interval ID as it will
+			// be cleared when the extension is closed
+			window.setInterval(() => {
 				updateCurrentChain(activeTab?.id);
 			}, 1000);
 		}

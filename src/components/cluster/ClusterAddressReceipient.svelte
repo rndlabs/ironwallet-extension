@@ -13,7 +13,7 @@
 		pointer-events: none;
 	}
 
-	.cluster-address-recipient svg {
+	/* .cluster-address-recipient svg {
 		padding: 0px 4px !important;
-	}
+	} */
 </style>

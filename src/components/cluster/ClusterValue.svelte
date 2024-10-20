@@ -5,7 +5,7 @@
 	export let style: string | Record<string, string> = '';
 </script>
 
-<div
+<button
 	class="cluster-value"
 	class:pointer-events={pointerEvents}
 	class:transparent
@@ -16,9 +16,10 @@
 		: Object.entries(style)
 				.map(([key, value]) => `${key}: ${value};`)
 				.join(' ')}
+	aria-label="Action button"
 >
 	<slot></slot>
-</div>
+</button>
 
 <style>
 	.cluster-value {
